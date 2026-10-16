@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GridLine</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+	<link rel ="stylesheet" href ="style.css">
+	<link rel="stylesheet" href="theme.css">
+</head>
+
+<body>
+
+    <header>
+        <img src="pic.png" alt="PowerLink Alert" class="Monitor">
+        <h2 class ="Monitor-App">GridLine</h2>
+        <nav class="navigation" aria-label="Main navigation">
+            <button class="btnLogin-popup" type="button" aria-label="Switch to registration">
+                <ion-icon name="person-add-outline" aria-hidden="true"></ion-icon>
+                <span class="nav-label">Register</span>
+            </button>
+        </nav>
+    </header>
+
+    <section class="hero" aria-label="About GridLine">
+        <h1>Power problem nearby? Report it in a minute.</h1>
+        <p>Send outages, broken streetlights and electrical hazards to the people who review and repair them. Add a photo and your location so the fault is easy to find.</p>
+        <ul class="hero-chips" aria-label="What you can report">
+            <li>Power outage</li>
+            <li>Streetlight</li>
+            <li>Electrical hazard</li>
+            <li>Damaged equipment</li>
+        </ul>
+    </section>
+
+    <div class="wrapper active-popup">
+        <span class="icon-close"><ion-icon name="close-outline"></ion-icon></span>
+        <div class="form-box login">
+            <h2>Welcome back</h2>
+            <p class="form-sub">Log in to your account</p>
+            <form id="login-form" action="#">
+                <div class="input-box">
+                    <span class="icon"><ion-icon name="mail-outline"></ion-icon></span>
+                    <input id="login-email" name="email" type="email" placeholder=" " autocomplete="email" required>
+                    <label for="login-email">Email</label>
+                </div>
+                <div class="input-box">
+                    <span class="icon toggle-password" role="button" tabindex="0" aria-label="Show password"><ion-icon name="eye-off-outline"></ion-icon></span>
+                    <input id="login-password" name="password" type="password" placeholder=" " autocomplete="current-password" required>
+                    <label for="login-password">Password</label>
+                </div>
+                <button type="submit" class="btn">Login</button>
+                <p class="auth-feedback" id="login-feedback" role="status" aria-live="polite"></p>
+                <div class="login-register">
+                    <p>Don't have an account? <a href="#" class="register-link">Register</a></p>
+
+                </div>
+            </form>
+        </div>
+
+        <div class="form-box register">
+            <h2>Create account</h2>
+            <p class="form-sub">Register to start reporting</p>
+            <form id="register-form" action="#">
+                <div class="input-box">
+                    <span class="icon">
+                        <ion-icon name="person-outline"></ion-icon>
+                    </span>
+                    <input id="register-username" name="username" type="text" placeholder=" " autocomplete="username" required>
+                    <label for="register-username">Username</label>
+                </div>
+                <div class="input-box">
+                    <span class="icon"><ion-icon name="mail-outline"></ion-icon></span>
+                    <input id="register-email" name="email" type="email" placeholder=" " autocomplete="email" required>
+                    <label for="register-email">Email</label>
+                </div>
+                <div class="input-box">
+                    <span class="icon toggle-password" role="button" tabindex="0" aria-label="Show password"><ion-icon name="eye-off-outline"></ion-icon></span>
+                    <input id="register-password" name="password" type="password" placeholder=" " autocomplete="new-password" minlength="8" required>
+                    <label for="register-password">Password</label>
+                </div>
+                <div class="remember-forgot">
+                    <label><input type="checkbox" required>I agree to the terms & conditions</label>
+                
+                </div>
+                <button type="submit"
+                class="btn">Register</button>
+                <p class="auth-feedback" id="register-feedback" role="status" aria-live="polite"></p>
+                <div class="login-register">
+                    <p>Already have an account? <a 
+                        href="#"
+                        class="login-link">Login</a></p>
+                </div>
+            </form>
+        </div>
+
+    </div>
+
+    <script src="storage.js"></script>
+    <script src="script.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.js"></script>
+</body>
+</html>

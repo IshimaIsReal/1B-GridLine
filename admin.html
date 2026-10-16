@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>GridLine Admin</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="app.css">
+	<link rel="stylesheet" href="admin.css">
+	<link rel="stylesheet" href="theme.css">
+</head>
+
+<body class="dashboard-mode">
+	<header>
+		<img src="pic.png" alt="PowerLink Alert" class="Monitor">
+		<h2 class="Monitor-App">GridLine</h2>
+		<nav class="navigation" aria-label="Admin navigation">
+			<div class="admin-tabs" role="tablist" aria-label="Admin views">
+				<button class="admin-tab" id="pending-tab" type="button" role="tab" aria-selected="true" aria-controls="pending-reports"><ion-icon name="time-outline"></ion-icon><span class="nav-label">Pending</span></button>
+				<button class="admin-tab" id="ongoing-tab" type="button" role="tab" aria-selected="false" aria-controls="ongoing-reports" tabindex="-1"><ion-icon name="construct-outline"></ion-icon><span class="nav-label">On-going</span></button>
+				<button class="admin-tab" id="history-tab" type="button" role="tab" aria-selected="false" aria-controls="history-reports" tabindex="-1"><ion-icon name="checkmark-done-outline"></ion-icon><span class="nav-label">History</span></button>
+				<button class="admin-tab" id="accounts-tab" type="button" role="tab" aria-selected="false" aria-controls="accounts" tabindex="-1"><ion-icon name="people-outline"></ion-icon><span class="nav-label">Accounts</span></button>
+			</div>
+			<button class="btnLogin-popup" id="logout-button" type="button"><ion-icon name="log-out-outline"></ion-icon><span class="nav-label">Log out</span></button>
+		</nav>
+	</header>
+
+	<main class="dashboard" id="admin-dashboard">
+		<div class="dashboard-heading">
+			<div>
+				<p class="eyebrow">ADMINISTRATION</p>
+				<h1>Welcome, <span id="admin-name">Admin</span></h1>
+				<p class="dashboard-subtitle">Review and update reports saved in this browser.</p>
+			</div>
+			<span class="system-status"><span></span> System online</span>
+		</div>
+		<p class="admin-feedback" id="admin-feedback" role="status" aria-live="polite"></p>
+
+		<section class="dashboard-panel reports-panel" id="pending-reports" role="tabpanel" aria-labelledby="pending-tab" tabindex="0">
+			<div class="panel-heading reports-heading">
+				<div>
+					<p class="eyebrow">REVIEW QUEUE</p>
+					<h2>Pending reports</h2>
+				</div>
+				<span class="report-count" id="pending-count">0 pending</span>
+			</div>
+			<ul class="report-list" id="pending-list" aria-live="polite"></ul>
+			<div class="empty-reports pending-empty" id="empty-pending" role="status" aria-live="polite">
+				<ion-icon name="checkmark-circle-outline" aria-hidden="true"></ion-icon>
+				<div>
+					<strong>Queue is clear</strong>
+					<p>New outage reports will appear here for review.</p>
+				</div>
+			</div>
+		</section>
+
+		<section class="dashboard-panel reports-panel" id="ongoing-reports" role="tabpanel" aria-labelledby="ongoing-tab" tabindex="0" hidden>
+			<div class="panel-heading reports-heading">
+				<div>
+					<p class="eyebrow">WORK IN PROGRESS</p>
+					<h2>On-going repairs</h2>
+				</div>
+				<span class="report-count" id="ongoing-count">0 on-going</span>
+			</div>
+			<ul class="report-list" id="ongoing-list" aria-live="polite"></ul>
+			<p class="empty-reports" id="empty-ongoing">No on-going repairs right now.</p>
+		</section>
+
+		<section class="dashboard-panel reports-panel" id="history-reports" role="tabpanel" aria-labelledby="history-tab" tabindex="0" hidden>
+			<div class="panel-heading reports-heading">
+				<div>
+					<p class="eyebrow">COMPLETED OR ARCHIVED</p>
+					<h2>History</h2>
+				</div>
+				<span class="report-count" id="resolved-count">0 items</span>
+			</div>
+			<ul class="report-list" id="history-list" aria-live="polite"></ul>
+			<p class="empty-reports" id="empty-history">No solved reports yet.</p>
+		</section>
+
+		<section class="dashboard-panel account-panel" id="accounts" role="tabpanel" aria-labelledby="accounts-tab" tabindex="0" hidden>
+			<div class="panel-heading">
+				<div>
+					<p class="eyebrow">ADMIN</p>
+					<h2>Registered accounts</h2>
+				</div>
+				<span class="report-count" id="account-count">0 accounts</span>
+			</div>
+			<p class="account-note">Admin email: admin123@gmail.com. This browser-only app does not verify email ownership.</p>
+			<ul class="account-list" id="account-list" aria-live="polite"></ul>
+		</section>
+	</main>
+
+	<script src="storage.js"></script>
+	<script src="admin.js"></script>
+	<script type="module" src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.esm.js"></script>
+	<script nomodule src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.js"></script>
+</body>
+</html>

@@ -1,0 +1,534 @@
+.navigation .admin-tabs {
+	display: inline-flex;
+	align-items: center;
+	gap: 3px;
+	padding: 4px;
+	border: 1px solid rgba(219, 237, 235, .2);
+	border-radius: 6px;
+	background: rgba(4, 15, 21, .48);
+	vertical-align: middle;
+}
+
+.admin-tab {
+	min-height: 34px;
+	padding: 0 14px;
+	border: 0;
+	border-radius: 4px;
+	background: transparent;
+	color: #c0ced0;
+	cursor: pointer;
+	font: inherit;
+	font-size: .9em;
+}
+
+.admin-tab[aria-selected="true"] {
+	background: rgba(118, 216, 193, .18);
+	color: #94e5d1;
+}
+
+#pending-list {
+	display: grid;
+	gap: 12px;
+}
+
+#pending-list .report-item {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) minmax(170px, 210px);
+	align-items: start;
+	gap: 24px;
+	padding: 20px;
+	border: 1px solid rgba(57, 83, 63, .14);
+	border-left: 3px solid #d4a64f;
+	border-radius: 8px;
+	background: rgba(255, 255, 255, .72);
+	box-shadow: 0 4px 14px rgba(43, 66, 48, .06);
+}
+
+#pending-list .report-details {
+	display: grid;
+	align-content: start;
+	gap: 14px;
+}
+
+#pending-list .report-issue-heading {
+	display: flex;
+	align-items: baseline;
+	flex-wrap: wrap;
+	gap: 8px 12px;
+}
+
+#pending-list .report-detail-label {
+	color: #778278;
+	font-size: .68em;
+	font-weight: 700;
+	text-transform: uppercase;
+}
+
+#pending-list .report-type-value {
+	margin: 0;
+	color: #345141;
+	font-size: 1.2em;
+	font-weight: 700;
+	line-height: 1.2;
+}
+
+#pending-list .report-location {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	min-width: 0;
+	padding: 11px 12px;
+	border-radius: 6px;
+	background: rgba(231, 239, 229, .66);
+}
+
+#pending-list .report-location ion-icon {
+	flex: 0 0 auto;
+	color: #52785d;
+	font-size: 20px;
+}
+
+#pending-list .report-location .report-area {
+	display: block;
+	margin-top: 3px;
+	color: #4e5f53;
+	font-size: .9em;
+	line-height: 1.4;
+	overflow-wrap: anywhere;
+}
+
+#pending-list .report-description {
+	padding-top: 12px;
+	border-top: 1px solid rgba(57, 83, 63, .14);
+}
+
+#pending-list .report-description p {
+	margin-top: 5px;
+	color: #4e5f53;
+	font-size: .92em;
+	line-height: 1.55;
+	overflow-wrap: anywhere;
+}
+
+#pending-list .report-proof-missing {
+	margin: 0;
+	color: #778278;
+	font-size: .78em;
+}
+
+#pending-list .report-photo-proof {
+	margin: 0;
+}
+
+#pending-list .report-meta {
+	width: 100%;
+	padding-left: 18px;
+	border-left: 1px solid rgba(57, 83, 63, .14);
+	gap: 10px;
+	text-align: right;
+}
+
+#pending-list .report-meta-label {
+	color: #778278;
+	font-size: .68em;
+	font-weight: 700;
+	text-transform: uppercase;
+}
+
+#pending-list .report-meta time {
+	color: #4e5f53;
+	font-size: .82em;
+	overflow-wrap: anywhere;
+}
+
+#pending-list .report-actions {
+	justify-content: flex-end;
+}
+
+#pending-list .confirm-report,
+#pending-list .remove-report {
+	min-height: 40px;
+}
+
+#empty-pending.pending-empty {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 14px;
+	min-height: 104px;
+	margin-top: 8px;
+	padding: 20px;
+	border: 1px dashed rgba(57, 83, 63, .28);
+	border-radius: 8px;
+	background: rgba(231, 239, 229, .48);
+}
+
+#empty-pending[hidden] {
+	display: none;
+}
+
+.pending-empty > ion-icon {
+	flex: 0 0 auto;
+	padding: 10px;
+	border-radius: 50%;
+	background: rgba(118, 154, 126, .16);
+	color: #52785d;
+	font-size: 28px;
+}
+
+.pending-empty strong {
+	color: #345141;
+	font-size: .98em;
+}
+
+.pending-empty p {
+	margin-top: 4px;
+	color: #68766b;
+	font-size: .86em;
+}
+
+.admin-tab:focus-visible {
+	outline: 2px solid #76d8c1;
+	outline-offset: 2px;
+}
+
+.admin-feedback {
+	position: fixed;
+	top: 102px;
+	right: 24px;
+	z-index: 200;
+	width: min(380px, calc(100vw - 32px));
+	margin: 0;
+	padding: 12px 16px;
+	border: 1px solid rgba(118, 216, 193, .5);
+	border-left: 4px solid #76d8c1;
+	border-radius: 5px;
+	background: #10232d;
+	box-shadow: 0 12px 30px rgba(0, 0, 0, .35);
+	color: #fff;
+	font-size: .9em;
+	opacity: 0;
+	visibility: hidden;
+	transform: translateY(-6px);
+	transition: opacity .18s ease, transform .18s ease, visibility .18s ease;
+}
+
+.admin-feedback:not(:empty) {
+	opacity: 1;
+	visibility: visible;
+	transform: translateY(0);
+}
+
+.confirm-report,
+.remove-report,
+.save-schedule {
+	min-height: 36px;
+	padding: 0 10px;
+	border: 1px solid rgba(99, 213, 165, .5);
+	border-radius: 4px;
+	background: rgba(99, 213, 165, .12);
+	color: #94e5d1;
+	cursor: pointer;
+	font: inherit;
+	font-size: .82em;
+}
+
+.confirm-report:hover,
+.save-schedule:hover {
+	background: rgba(99, 213, 165, .22);
+}
+
+.remove-report {
+	border-color: rgba(237, 180, 99, .48);
+	background: rgba(237, 180, 99, .1);
+	color: #f3bd70;
+}
+
+.remove-report:hover {
+	background: rgba(237, 180, 99, .2);
+}
+
+.confirm-report:focus-visible,
+.remove-report:focus-visible,
+.save-schedule:focus-visible {
+	outline: 2px solid #76d8c1;
+	outline-offset: 2px;
+}
+
+.report-actions {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+}
+
+.action-confirmed {
+	color: #94e5d1;
+	font-size: .82em;
+	font-weight: 600;
+}
+
+.repair-schedule-form {
+	display: grid;
+	gap: 6px;
+	width: min(260px, 100%);
+}
+
+.repair-schedule-form label {
+	color: #fff;
+	font-size: .82em;
+}
+
+.repair-schedule-form input {
+	min-width: 0;
+	min-height: 38px;
+	padding: 4px 8px;
+	border: 1px solid rgba(211, 231, 229, .25);
+	border-radius: 4px;
+	background: rgba(4, 15, 21, .62);
+	color: #f4f8f7;
+	font: inherit;
+	color-scheme: dark;
+}
+
+.account-panel {
+	margin-top: 18px;
+}
+
+.account-note {
+	margin: -6px 0 12px;
+	color: #aebdc0;
+	font-size: .82em;
+}
+
+.account-list {
+	list-style: none;
+}
+
+.account-item {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 16px;
+	padding: 14px 0;
+	border-top: 1px solid rgba(225, 241, 239, .14);
+}
+
+.account-identity {
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+	min-width: 0;
+}
+
+.account-identity span,
+.account-created {
+	color: #bdcbcd;
+	font-size: .84em;
+	overflow-wrap: anywhere;
+}
+
+.account-created {
+	flex: 0 0 auto;
+	text-align: right;
+}
+
+@media (max-width: 640px) {
+	#pending-list .report-item {
+		grid-template-columns: minmax(0, 1fr);
+		gap: 14px;
+		padding: 16px;
+	}
+
+	#pending-list .report-meta {
+		align-items: flex-start;
+		padding-top: 12px;
+		padding-left: 0;
+		border-top: 1px solid rgba(57, 83, 63, .14);
+		border-left: 0;
+		text-align: left;
+	}
+
+	#pending-list .report-actions {
+		justify-content: flex-start;
+	}
+
+	#pending-list .confirm-report,
+	#pending-list .remove-report {
+		flex: 1 1 0;
+		min-width: 0;
+	}
+
+	#empty-pending.pending-empty {
+		justify-content: flex-start;
+		padding: 16px;
+	}
+
+	.admin-feedback {
+		top: 108px;
+		right: 12px;
+		width: calc(100vw - 24px);
+	}
+
+	.admin-tab {
+		padding-right: 9px;
+		padding-left: 9px;
+	}
+
+	.account-item {
+		align-items: flex-start;
+		flex-direction: column;
+		gap: 6px;
+	}
+
+	.account-created {
+		text-align: left;
+	}
+}
+
+.navigation .admin-tabs {
+	border-color: rgba(207, 168, 255, .28);
+	border-radius: 10px;
+	background: rgba(14, 19, 48, .72);
+}
+
+.admin-tab {
+	border-radius: 7px;
+	transition: background .2s ease, color .2s ease;
+}
+
+.admin-tab:hover {
+	background: rgba(192, 141, 255, .13);
+	color: #f1d9ff;
+}
+
+.admin-tab[aria-selected="true"] {
+	background: linear-gradient(110deg, rgba(161, 92, 255, .32), rgba(255, 98, 178, .23));
+	color: #f0c4ff;
+}
+
+.navigation .admin-tabs {
+	position: relative;
+	isolation: isolate;
+}
+
+.navigation .admin-tabs::before {
+	position: absolute;
+	top: 4px;
+	bottom: 4px;
+	left: var(--tab-indicator-left, 4px);
+	width: var(--tab-indicator-width, 0px);
+	border-radius: 999px;
+	background: linear-gradient(110deg, rgba(161, 92, 255, .32), rgba(255, 98, 178, .23));
+	content: '';
+	opacity: 0;
+	pointer-events: none;
+	transition: none;
+}
+
+.navigation .admin-tabs.is-ready::before {
+	opacity: 1;
+	transition: opacity .16s ease, left .36s cubic-bezier(.22, 1, .36, 1), width .36s cubic-bezier(.22, 1, .36, 1);
+}
+
+.navigation .admin-tab {
+	position: relative;
+	z-index: 1;
+	background: transparent;
+	transition: color .2s ease;
+}
+
+.navigation .admin-tab[aria-selected="true"] {
+	background: transparent;
+	color: #f0c4ff;
+}
+
+.navigation .admin-tab .nav-label {
+	display: inline-block;
+	transition: transform .24s cubic-bezier(.2, .75, .25, 1);
+}
+
+.navigation .admin-tab:hover .nav-label,
+.navigation .admin-tab:focus-visible .nav-label {
+	transform: translateY(-2px);
+}
+
+.admin-tab:focus-visible,
+.confirm-report:focus-visible,
+.remove-report:focus-visible,
+.save-schedule:focus-visible {
+	outline-color: #d68bff;
+}
+
+.admin-feedback {
+	border-color: rgba(204, 119, 255, .5);
+	border-left-color: #d68bff;
+	border-radius: 10px;
+	background: #241d48;
+	box-shadow: 0 12px 30px rgba(8, 7, 28, .45);
+}
+
+.confirm-report,
+.save-schedule {
+	border-color: rgba(91, 225, 178, .52);
+	border-radius: 7px;
+	background: rgba(61, 205, 157, .14);
+	color: #94f0ce;
+}
+
+.confirm-report:hover,
+.save-schedule:hover {
+	background: rgba(61, 205, 157, .25);
+}
+
+.remove-report {
+	border-color: rgba(255, 146, 123, .52);
+	border-radius: 7px;
+	background: rgba(255, 111, 112, .13);
+	color: #ffb1a2;
+}
+
+.remove-report:hover {
+	background: rgba(255, 111, 112, .24);
+}
+
+.action-confirmed {
+	color: #91f0cd;
+}
+
+.repair-schedule-form input {
+	border-color: rgba(184, 168, 225, .28);
+	border-radius: 7px;
+	background: rgba(12, 20, 46, .72);
+}
+
+.repair-schedule-form input:focus {
+	border-color: #d68bff;
+	outline: none;
+	box-shadow: 0 0 0 3px rgba(204, 119, 255, .2);
+}
+
+.account-item {
+	border-top-color: rgba(199, 176, 231, .16);
+}
+
+.confirm-report,
+.remove-report,
+.save-schedule,
+.repair-schedule-form input {
+	transition:
+		background-color .25s ease,
+		border-color .25s ease,
+		box-shadow .25s ease,
+		color .25s ease,
+		transform .25s ease;
+}
+
+.confirm-report:hover,
+.remove-report:hover,
+.save-schedule:hover {
+	transform: translateY(-1px);
+}
+
+.account-item {
+	transition: border-color .25s ease, background-color .25s ease;
+}

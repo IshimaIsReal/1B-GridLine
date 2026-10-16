@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>GridLine Dashboard</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="app.css">
+	<link rel="stylesheet" href="theme.css">
+</head>
+
+<body class="dashboard-mode">
+	<header>
+		<img src="pic.png" alt="PowerLink Alert" class="Monitor">
+		<h2 class="Monitor-App">GridLine</h2>
+		<nav class="navigation" aria-label="Dashboard views">
+			<div class="user-tabs" role="tablist" aria-label="Report views">
+				<button class="user-tab" id="report-tab" type="button" role="tab" aria-selected="true" aria-controls="report"><ion-icon name="add-circle-outline"></ion-icon><span class="nav-label">Report</span></button>
+				<button class="user-tab" id="pending-tab" type="button" role="tab" aria-selected="false" aria-controls="reports" tabindex="-1"><ion-icon name="time-outline"></ion-icon><span class="nav-label">Pending</span></button>
+				<button class="user-tab" id="history-tab" type="button" role="tab" aria-selected="false" aria-controls="history-reports" tabindex="-1"><ion-icon name="checkmark-done-outline"></ion-icon><span class="nav-label">History</span></button>
+			</div>
+			<button class="btnLogin-popup" id="logout-button" type="button"><ion-icon name="log-out-outline"></ion-icon><span class="nav-label">Log out</span></button>
+		</nav>
+	</header>
+
+	<main class="dashboard" id="dashboard">
+		<div class="dashboard-heading">
+			<div>
+				<p class="eyebrow">GRIDLINE CENTER</p>
+				<h1>Good to see you, <span id="dashboard-name">there</span></h1>
+				<p class="dashboard-subtitle" id="dashboard-subtitle">Reports are saved in this browser and are not shared across devices.</p>
+			</div>
+			<span class="system-status"><span></span> System online</span>
+		</div>
+
+		<section class="dashboard-stats" aria-label="Report summary">
+			<article class="stat-item">
+				<span class="stat-label">Total reports</span>
+				<strong id="total-reports">0</strong>
+			</article>
+			<article class="stat-item">
+				<span class="stat-label">Pending reports</span>
+				<strong id="open-reports">0</strong>
+			</article>
+		</section>
+
+		<div class="dashboard-grid user-view">
+			<section class="dashboard-panel report-panel" id="report" role="tabpanel" aria-labelledby="report-tab" tabindex="0">
+				<div class="panel-heading">
+					<div>
+						<p class="eyebrow">NEW REPORT</p>
+						<h2>Report an issue</h2>
+					</div>
+					<span class="panel-mark"><ion-icon name="alert-circle-outline"></ion-icon></span>
+				</div>
+				<form id="report-form">
+					<label class="field-label" for="issue-type">Issue type</label>
+					<select id="issue-type" name="type" required>
+						<option value="" disabled selected>Select an issue</option>
+						<option>Power outage</option>
+						<option>Streetlight</option>
+						<option>Electrical hazard</option>
+						<option>Damaged equipment</option>
+						<option>Other</option>
+					</select>
+
+					<label class="field-label" for="issue-area">Current area</label>
+					<div class="area-input-row">
+						<input id="issue-area" name="area" type="text" placeholder="Neighborhood, street, or building" required>
+						<button class="location-button" id="locate-button" type="button" aria-label="Use my device location" title="Use my device location">
+							<ion-icon name="locate-outline"></ion-icon>
+						</button>
+					</div>
+					<p class="location-privacy-note">Your coordinates are sent to OpenStreetMap to find a readable address.</p>
+					<p class="location-status" id="location-status" aria-live="polite"></p>
+
+					<label class="field-label" for="issue-description">What happened?</label>
+					<textarea id="issue-description" name="description" rows="4" maxlength="500" placeholder="Describe the issue and any details that could help." required></textarea>
+
+					<label class="field-label" for="issue-photo">Photo evidence (optional)</label>
+					<input id="issue-photo" name="photo" type="file" accept="image/*">
+					<p class="photo-hint">Images up to 5 MB; a compressed copy is saved with the report in this browser.</p>
+					<figure class="photo-preview" id="photo-preview" hidden>
+						<img id="photo-preview-image" alt="Selected evidence preview">
+						<figcaption>Evidence preview</figcaption>
+					</figure>
+					<p class="photo-status" id="photo-status" aria-live="polite"></p>
+
+					<div class="form-footer">
+						<span>Include enough detail to identify the location.</span>
+						<button class="submit-report" type="submit"><ion-icon name="send-outline"></ion-icon> Submit report</button>
+					</div>
+				</form>
+			</section>
+
+			<section class="dashboard-panel reports-panel" id="reports" role="tabpanel" aria-labelledby="pending-tab" tabindex="0" hidden>
+				<div class="panel-heading reports-heading">
+					<div>
+						<p class="eyebrow">REPORT STATUS</p>
+						<h2 id="reports-title">Pending reports</h2>
+					</div>
+					<span class="report-count" id="report-count">0 active</span>
+				</div>
+				<ul class="report-list" id="report-list" aria-live="polite"></ul>
+				<p class="empty-reports" id="empty-reports">No active reports yet.</p>
+			</section>
+
+			<section class="dashboard-panel reports-panel" id="history-reports" role="tabpanel" aria-labelledby="history-tab" tabindex="0" hidden>
+				<div class="panel-heading reports-heading">
+					<div>
+						<p class="eyebrow">RESOLVED ISSUES</p>
+						<h2>History</h2>
+					</div>
+					<span class="report-count" id="history-count">0 items</span>
+				</div>
+				<ul class="report-list" id="history-list" aria-live="polite"></ul>
+				<p class="empty-reports" id="empty-history">No resolved or archived reports yet.</p>
+			</section>
+		</div>
+		<p class="report-feedback" id="report-feedback" role="status" aria-live="polite"></p>
+	</main>
+
+	<script src="storage.js"></script>
+	<script src="app.js"></script>
+	<script type="module" src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.esm.js"></script>
+	<script nomodule src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.js"></script>
+</body>
+</html>
